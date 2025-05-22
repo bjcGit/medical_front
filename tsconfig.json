@@ -2,6 +2,17 @@
 /* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "compileOnSave": false,
+  "baseUrl": "./",
+  "paths": {
+    "@app/*": ["src/app/*"],
+    "@auth/*": ["src/app/auth/*"],
+    "@environments/*": ["src/environments/*"],
+    "@shared/*": ["src/app/shared/*"],
+    "@core/*": ["src/app/core/*"],
+    "@features/*": ["src/app/features/*"],
+    "@modules/*": ["src/app/modules/*"],
+    "@services/*": ["src/app/services/*"]
+  },
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "strict": true,
