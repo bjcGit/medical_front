@@ -16,39 +16,21 @@ export const dashboardRoutes: Routes = [
     component: HomeLayoutComponent,
     canActivate: [authGuard], 
     children: [
-      {
-        path: '',
-        component: HomeComponent,
-      },
-      {
-        path: 'sedes',
-        component: SedesComponent,
-      },
-      {
-        path: 'profesionales',
-        component: ProfesionalesComponent,
-      },
-      {
-        path: 'citas',
-        component: CitasComponent,
-      },
-      {
-        path: 'administrativos',
-        component: AdministrativosComponent,
-      },
-      {
-        path: 'pacientes',
-        component: PacientesComponent,
-      },
-      {
-        path: 'historias',
-        component: HistoriasClinicasComponent,
-      },
-      {
-        path: '**',
-        pathMatch: "full",
-        redirectTo: '',
-      },
+      { path: '', component: HomeComponent },
+
+      { path: 'sedes', component: SedesComponent, canActivate: [rolGuard], data: { roles: ['ADMINISTRATIVO'] } },
+
+      { path: 'profesionales', component: ProfesionalesComponent, canActivate: [rolGuard], data: { roles: ['ADMINISTRATIVO', 'PROFESIONAL'] } },
+
+      { path: 'citas', component: CitasComponent, canActivate: [rolGuard], data: { roles: ['ADMINISTRATIVO', 'PROFESIONAL', 'PACIENTE'] } },
+
+      { path: 'administrativos', component: AdministrativosComponent, canActivate: [rolGuard], data: { roles: ['ADMINISTRATIVO'] } },
+
+      { path: 'pacientes', component: PacientesComponent, canActivate: [rolGuard], data: { roles: ['ADMINISTRATIVO', 'PROFESIONAL'] } },
+
+      { path: 'historias', component: HistoriasClinicasComponent, canActivate: [rolGuard], data: { roles: ['ADMINISTRATIVO', 'PROFESIONAL'] } },
+
+      { path: '**', pathMatch: 'full', redirectTo: '' }
     ],
   },
 ]

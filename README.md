@@ -1,59 +1,123 @@
-# FrontAngular
+# MedicalApp - Plataforma de Gestión Clínica
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
+MedicalApp es una plataforma integral desarrollada con **Angular 16** para gestionar el ecosistema digital de una red médica. Está diseñada para pacientes, profesionales de salud y administrativos, permitiendo agendar citas, gestionar historias clínicas, administrar personal y sedes, y visualizar información relevante desde un dashboard central.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🛠️ Tecnologías principales
+
+- **Angular 16** (Standalone Components)
+- **TypeScript** (estricto)
+- **Tailwind CSS** (para estilos)
+- **RxJS** (manejo de observables)
+- **Firebase Auth** (provisional)
+- **Backend RESTful API** (ExpressJS / NestJS)
+
+---
+
+## 🚀 Instalación del proyecto
 
 ```bash
+git clone https://github.com/bjcGit/medical_front.git
+cd medical_front
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Requiere Node.js ≥ 18.x
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 📦 Estructura del proyecto
 
-```bash
-ng generate component component-name
+```
+src/
+├── app/
+│   ├── auth/                  # Autenticación y guardias
+│   ├── dashboard/             # Layout principal y navegación
+│   │   ├── pages/             # Vistas principales por módulo
+│   │   ├── components/        # Componentes compartidos por módulo
+│   │   ├── services/          # Servicios RESTful
+│   ├── environment.ts         # URL del API backend
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 🔐 Autenticación y Roles
 
-## Building
+El sistema soporta 3 tipos de roles:
 
-To build the project run:
+- **ADMINISTRATIVO**: acceso completo a todos los módulos.
+- **PROFESIONAL**: puede ver solo pacientes asignados, historias clínicas propias y sus citas.
+- **PACIENTE**: acceso solo al módulo de citas propias.
 
-```bash
-ng build
-```
+El control de rutas y visibilidad está gestionado por `auth.guard.ts` y `role.guard.ts`.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## 🧩 Módulos desarrollados
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### 🏥 Sedes
+- CRUD completo
+- Asociación de información geográfica
 
-```bash
-ng test
-```
+### 👨‍⚕️ Profesionales
+- Registro y edición de datos
+- Asociación con historias y citas
 
-## Running end-to-end tests
+### 👩‍💼 Administrativos
+- Gestión de personal administrativo
+- Roles y control de acceso
 
-For end-to-end (e2e) testing, run:
+### 🧑‍🤝‍🧑 Pacientes
+- Registro de información personal
+- Vinculación con historias clínicas y citas
 
-```bash
-ng e2e
-```
+### 📋 Historias Clínicas
+- Visualización en cards
+- Edición mediante modal dinámico
+- Asociación a profesional y paciente
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### 📅 Citas Médicas
+- Agenda visual
+- Selección de sede, profesional y paciente
+- Filtrado por usuario logueado
 
-## Additional Resources
+---
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 💻 Funcionalidades clave
+
+- Diseño modular y responsivo
+- Uso de `ReactiveForms` para validaciones
+- Comunicación entre componentes con `@Input` y `@Output`
+- Interceptores de error y token (próximamente)
+- Filtros dinámicos basados en el rol
+
+---
+
+## 📖 Consideraciones
+
+- El backend debe proveer los endpoints mencionados.
+- Las rutas están protegidas por `authGuard` y `roleGuard`.
+- El token se almacena en `localStorage` y se revalida con `/auth/revalidate`.
+
+---
+
+## ✨ Próximas mejoras
+
+- Interceptor global de errores y tokens
+- Paginación y búsqueda en tablas
+- Integración con calendario visual para citas
+- Estadísticas y reportes
+
+---
+
+## 👨‍💻 Desarrollado por
+
+Tu equipo de desarrollo. Para soporte técnico, escribe a: contacto@medicalapp.dev
+
+---
+
+## 📜 Licencia
+
+MIT License © 2025

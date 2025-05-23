@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent { 
-  constructor(private authService: AuthService) {}
+  constructor(public authService: AuthService) {}
+
+  
 
   logout() {
     this.authService.logout();

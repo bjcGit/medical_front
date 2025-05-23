@@ -1,0 +1,28 @@
+<div class="flex flex-wrap justify-center gap-5 mt-5">
+  <div class="stats shadow w-full md:w-auto">
+    <div class="stat">
+      <div class="stat-title">Pacientes</div>
+      <div class="stat-value text-primary">{{ stats?.usuarios?.pacientes ?? 0 }}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-title">Profesionales</div>
+      <div class="stat-value text-secondary">{{ stats?.usuarios?.profesionales ?? 0 }}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-title">Administrativos</div>
+      <div class="stat-value text-accent">{{ stats?.usuarios?.administrativos ?? 0 }}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-title">Sedes</div>
+      <div class="stat-value">{{ stats?.sedes ?? 0 }}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-title">Citas programadas</div>
+      <div class="stat-value">{{ stats?.citas?.programadas ?? 0 }}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-title">Historias clínicas</div>
+      <div class="stat-value">{{ stats?.historias_clinicas ?? 0 }}</div>
+    </div>
+  </div>
+</div>
