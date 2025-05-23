@@ -8,6 +8,7 @@ import { AdministrativosComponent } from "./pages/administrativos/administrativo
 import { authGuard } from "../auth/guards/auth.guard";
 import { PacientesComponent } from "./pages/pacientes/pacientes.component";
 import { HistoriasClinicasComponent } from "./pages/historias-clinicas/historias-clinicas.component";
+import { rolGuard } from "../auth/guards/role.guard";
 
 export const dashboardRoutes: Routes = [
   {
