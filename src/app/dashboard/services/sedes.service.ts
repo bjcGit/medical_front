@@ -20,11 +20,11 @@ export class SedesService {
   private http = inject(HttpClient);
   private baseUrl = `${environment.apiUrl}/sedes`;
 
-getAll(): Observable<Sede[]> {
-  return this.http.get<any>(this.baseUrl).pipe(
-    map(response => response.data || [])
-  );
-}
+  getAll(): Observable<Sede[]> {
+    return this.http
+      .get<any>(this.baseUrl)
+      .pipe(map((response) => response.data || []));
+  }
 
   create(data: Partial<Sede>): Observable<Sede> {
     return this.http.post<Sede>(this.baseUrl, data);

@@ -1,1 +1,47 @@
-<p>citas works!</p>,
+<h1 class="text-2xl font-bold mb-4">Citas Médicas</h1>
+
+<div class="mb-4">
+  <button class="btn btn-primary" (click)="abrirModal()">Agendar nueva cita</button>
+</div>
+
+<div class="overflow-x-auto">
+  <table class="table w-full">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Motivo</th>
+        <th>Paciente</th>
+        <th>Profesional</th>
+        <th>Sede</th>
+        <th>Estado</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cita of citas">
+        <td>{{ cita.fecha_hora | date: 'short' }}</td>
+        <td>{{ cita.motivo }}</td>
+        <td>{{ cita.paciente.nombre }}</td>
+        <td>{{ cita.profesional.nombre }}</td>
+        <td>{{ cita.sede.nombre }}</td>
+        <td>{{ cita.estado }}</td>
+        <td>
+          <button class="btn btn-xs btn-outline" (click)="abrirModal(cita)">Editar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="modal modal-open" *ngIf="modalOpen">
+  <div class="modal-box max-w-2xl">
+    <app-cita-form
+      [citaToEdit]="citaEditando"
+      [pacientes]="pacientes"
+      [profesionales]="profesionales"
+      [sedes]="sedes"
+      (onSave)="guardarCita($event)"
+      (onCancel)="cerrarModal()"
+    />
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()" class="space-y-4">
+  <select class="select w-full" formControlName="paciente_uid">
+    <option value="">Seleccione un paciente</option>
+    <option *ngFor="let p of pacientes" [value]="p.uid">{{ p.nombre }}</option>
+  </select>
+
+  <select class="select w-full" formControlName="profesional_uid">
+    <option value="">Seleccione un profesional</option>
+    <option *ngFor="let p of profesionales" [value]="p.uid">{{ p.nombre }}</option>
+  </select>
+
+  <select class="select w-full" formControlName="sede_uid">
+    <option value="">Seleccione una sede</option>
+    <option *ngFor="let s of sedes" [value]="s.uid">{{ s.nombre }}</option>
+  </select>
+
+  <input class="input input-bordered w-full" type="datetime-local" formControlName="fecha_hora" />
+  <input class="input input-bordered w-full" placeholder="Motivo" formControlName="motivo" />
+
+  <div class="flex justify-end space-x-2">
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn" (click)="onCancel.emit()">Cancelar</button>
+  </div>
+</form>
