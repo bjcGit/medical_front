@@ -1,10 +1,33 @@
 <h1 class="text-3xl font-bold mt-5">Historias clinicas</h1>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2 gap-3">
+<div class="my-4">
+  <button class="btn btn-primary" (click)="abrirModalCrear()">Nueva Historia Clínica</button>
+</div>
 
-    <app-historia-clinica/>
-    <app-historia-clinica/>
-    <app-historia-clinica/>
-    <app-historia-clinica/>
-    
+<div *ngIf="loading" class="text-center py-6">Cargando historias...</div>
+
+<div
+  *ngIf="!loading && historias.length === 0"
+  class="text-center py-6 text-gray-500"
+>
+  No hay historias clínicas registradas.
+</div>
+
+<div
+  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2 gap-3"
+>
+<app-historia-clinica
+  *ngFor="let historia of historias"
+  [historia]="historia"
+  (editarHistoria)="abrirModalEditar($event)" />
+</div>
+
+<div class="modal modal-open" *ngIf="modalAbierto">
+  <div class="modal-box w-full max-w-2xl">
+    <app-historia-form
+      [historiaToEdit]="historiaEditando"
+      (onSave)="guardarHistoria($event)"
+      (onCancel)="cerrarModal()"
+    />
+  </div>
 </div>

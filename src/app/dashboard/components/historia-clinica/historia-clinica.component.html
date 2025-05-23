@@ -1,50 +1,27 @@
-  <div class="card bg-base-100 shadow-sm">
-        <div class="card-body">
-            <span class="badge badge-xs badge-warning">Aqui va el estado</span>
-            <div class="flex justify-between">
-                <h2 class="text-3xl font-bold">Paciente</h2>
-                <span class="text-xl">1144555666</span>
-            </div>
-            <ul class="mt-6 flex flex-col gap-2 text-xs">
-                <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 me-2 inline-block text-success" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Tratamiento activo</span>
-                </li>
-                       <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 me-2 inline-block text-success" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Tratamiento activo</span>
-                </li>
- 
-                <li>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 me-2 inline-block text-success" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span class="line-through">Tratamiento compeltado 1</span>
-                </li>
-                <li class="opacity-50">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 me-2 inline-block text-base-content/50"
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span class="line-through">Tratamiento compeltado 2</span>
-                </li>
-                <li class="opacity-50">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 me-2 inline-block text-base-content/50"
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span class="line-through">Tratamiento compeltado 3</span>
-                </li>
-            </ul>
-            <div class="mt-6">
-                <a class="btn btn-primary btn-block" [routerLink]="['/info', 'data']">Más información</a>
-            </div>
-        </div>
+<div class="card bg-base-100 shadow-sm">
+  <div class="card-body">
+    <span class="badge badge-xs badge-warning">
+      {{ historia.diagnostico ? "Con diagnóstico" : "Sin diagnóstico" }}
+    </span>
+
+    <div class="flex justify-between items-center">
+      <h2 class="text-lg font-bold">{{ historia.paciente.nombre }}</h2>
+      <span class="text-sm text-gray-500">{{ historia.paciente.cedula }}</span>
     </div>
+
+    <ul class="mt-4 text-sm space-y-1">
+      <li><strong>Motivo:</strong> {{ historia.motivo_consulta }}</li>
+      <li><strong>Diagnóstico:</strong> {{ historia.diagnostico }}</li>
+      <li><strong>Tratamiento:</strong> {{ historia.tratamiento }}</li>
+      <li>
+        <strong>Fecha:</strong> {{ historia.fecha | date : "mediumDate" }}
+      </li>
+    </ul>
+
+    <div class="mt-4">
+      <button class="btn btn-outline btn-primary w-full" (click)="onEditar()">
+        Más información
+      </button>
+    </div>
+  </div>
+</div>

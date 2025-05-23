@@ -1,0 +1,20 @@
+<form (ngSubmit)="submitForm()" [formGroup]="form" class="space-y-3">
+  <h3 class="font-bold text-lg mb-4">
+    {{ pacienteToEdit ? 'Editar Paciente' : 'Nuevo Paciente' }}
+  </h3>
+
+  <input class="input input-bordered w-full" placeholder="Nombre" formControlName="nombre" />
+  <input class="input input-bordered w-full" placeholder="Cédula" formControlName="cedula" />
+  <input class="input input-bordered w-full" placeholder="Correo" formControlName="correo" />
+  <input class="input input-bordered w-full" placeholder="Contraseña" type="password" formControlName="password" />
+  <input class="input input-bordered w-full" placeholder="Teléfono" formControlName="telefono" />
+  <input class="input input-bordered w-full" placeholder="Dirección" formControlName="direccion" />
+  <input class="input input-bordered w-full" placeholder="Cargo (si aplica)" formControlName="cargo" />
+
+  <div class="modal-action">
+    <button type="submit" class="btn btn-primary">
+      {{ pacienteToEdit ? 'Actualizar' : 'Crear' }}
+    </button>
+    <button type="button" class="btn" (click)="onCancel.emit()">Cancelar</button>
+  </div>
+</form>

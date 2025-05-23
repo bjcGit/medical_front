@@ -1,0 +1,21 @@
+<form (ngSubmit)="submitForm()" [formGroup]="form" class="space-y-3">
+  <h3 class="font-bold text-lg mb-4">
+    {{ profesionalToEdit ? 'Editar Profesional' : 'Nuevo Profesional' }}
+  </h3>
+
+  <input class="input input-bordered w-full" placeholder="Nombre" formControlName="nombre" />
+  <input class="input input-bordered w-full" placeholder="Cédula" formControlName="cedula" />
+  <input class="input input-bordered w-full" placeholder="Correo" formControlName="correo" />
+  <input class="input input-bordered w-full" type="password" placeholder="Contraseña" formControlName="password" />
+  <input class="input input-bordered w-full" placeholder="Teléfono" formControlName="telefono" />
+  <input class="input input-bordered w-full" placeholder="Dirección" formControlName="direccion" />
+  <input class="input input-bordered w-full" placeholder="Especialidad" formControlName="especialidad" />
+  <input class="input input-bordered w-full" placeholder="Registro Profesional" formControlName="registro_profesional" />
+
+  <div class="modal-action">
+    <button type="submit" class="btn btn-primary">
+      {{ profesionalToEdit ? 'Actualizar' : 'Crear' }}
+    </button>
+    <button type="button" class="btn" (click)="onCancel.emit()">Cancelar</button>
+  </div>
+</form>

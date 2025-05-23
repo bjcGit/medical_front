@@ -1,0 +1,44 @@
+<form (ngSubmit)="submitForm()" [formGroup]="form" class="space-y-3">
+  <h3 class="font-bold text-lg mb-4">
+    {{ sedeToEdit ? 'Editar Sede' : 'Nueva Sede' }}
+  </h3>
+
+  <input
+    class="input input-bordered w-full"
+    placeholder="Nombre"
+    formControlName="nombre"
+  />
+
+  <input
+    class="input input-bordered w-full"
+    placeholder="Dirección"
+    formControlName="direccion"
+  />
+
+  <input
+    class="input input-bordered w-full"
+    placeholder="Teléfono"
+    formControlName="telefono"
+  />
+
+  <input
+    class="input input-bordered w-full"
+    placeholder="Ciudad"
+    formControlName="ciudad"
+  />
+
+  <input
+    class="input input-bordered w-full"
+    placeholder="Departamento"
+    formControlName="departamento"
+  />
+
+  <div class="modal-action">
+    <button type="submit" class="btn btn-primary">
+      {{ sedeToEdit ? 'Actualizar' : 'Crear' }}
+    </button>
+    <button type="button" class="btn" (click)="onCancel.emit()">
+      Cancelar
+    </button>
+  </div>
+</form>

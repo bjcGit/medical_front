@@ -1,0 +1,29 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()" class="space-y-4">
+  <div class="form-control">
+    <label class="label">Paciente</label>
+    <select class="select select-bordered" formControlName="paciente_uid">
+      <option value="">Selecciona un paciente</option>
+      <option *ngFor="let p of pacientes" [value]="p.uid">{{ p.nombre }}</option>
+    </select>
+  </div>
+
+  <div class="form-control">
+    <label class="label">Profesional</label>
+    <select class="select select-bordered" formControlName="profesional_uid">
+      <option value="">Selecciona un profesional</option>
+      <option *ngFor="let p of profesionales" [value]="p.uid">{{ p.nombre }}</option>
+    </select>
+  </div>
+
+  <input class="input input-bordered w-full" type="date" formControlName="fecha" />
+
+  <textarea class="textarea textarea-bordered w-full" placeholder="Motivo de consulta" formControlName="motivo_consulta"></textarea>
+  <textarea class="textarea textarea-bordered w-full" placeholder="Antecedentes" formControlName="antecedentes"></textarea>
+  <textarea class="textarea textarea-bordered w-full" placeholder="Diagnóstico" formControlName="diagnostico"></textarea>
+  <textarea class="textarea textarea-bordered w-full" placeholder="Tratamiento" formControlName="tratamiento"></textarea>
+
+  <div class="modal-action">
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn" (click)="onCancel.emit()">Cancelar</button>
+  </div>
+</form>

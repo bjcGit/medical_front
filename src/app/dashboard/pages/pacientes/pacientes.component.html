@@ -1,1 +1,79 @@
-<p>pacientes works!</p>,
+<div class="p-4">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-2xl font-bold">Pacientes</h2>
+    <button class="btn btn-primary" (click)="abrirModalCrear()">
+      Nuevo Paciente
+    </button>
+  </div>
+
+  <div class="overflow-x-auto shadow rounded-lg">
+    <table class="table w-full">
+      <thead class="bg-base-200 text-base font-semibold">
+        <tr>
+          <th>Nombre</th>
+          <th>Cédula</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+          <th>Dirección</th>
+          <th>Estado</th>
+          <th class="text-right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loading -->
+        <tr *ngIf="loading">
+          <td colspan="7" class="text-center py-4 text-gray-500">
+            Cargando pacientes...
+          </td>
+        </tr>
+
+        <!-- Lista -->
+        <tr *ngFor="let paciente of pacientes">
+          <td>{{ paciente.nombre }}</td>
+          <td>{{ paciente.cedula }}</td>
+          <td>{{ paciente.correo }}</td>
+          <td>{{ paciente.telefono || 'No registra' }}</td>
+          <td>{{ paciente.direccion || 'No asignada' }}</td>
+          <td>
+            <span
+              class="badge"
+              [ngClass]="paciente.estado ? 'badge-success' : 'badge-error'"
+            >
+              {{ paciente.estado ? 'Activo' : 'Inactivo' }}
+            </span>
+          </td>
+          <td class="text-right space-x-2">
+            <button class="btn btn-sm btn-outline" (click)="abrirModalEditar(paciente)">
+              Editar
+            </button>
+            <button
+              class="btn btn-sm"
+              [ngClass]="paciente.estado ? 'btn-warning' : 'btn-success'"
+              (click)="toggleEstado(paciente)"
+            >
+              {{ paciente.estado ? 'Desactivar' : 'Activar' }}
+            </button>
+          </td>
+        </tr>
+
+        <!-- Sin resultados -->
+        <tr *ngIf="!loading && pacientes.length === 0">
+          <td colspan="7" class="text-center py-4 text-gray-500">
+            No hay pacientes registrados.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal modal-open" *ngIf="pacienteModalOpen">
+  <div class="modal-box w-full max-w-2xl">
+    <app-paciente-form
+      [pacienteToEdit]="pacienteEditando"
+      (onSave)="guardarPaciente($event)"
+      (onCancel)="cerrarModal()"
+    ></app-paciente-form>
+  </div>
+</div>
