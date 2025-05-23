@@ -1,1 +1,80 @@
-<p>administrativos works!</p>,
+<div class="p-4">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-2xl font-bold">Administrativos</h2>
+    <button class="btn btn-primary" (click)="abrirModalCrear()">
+      Nuevo Administrativo
+    </button>
+  </div>
+
+  <div class="overflow-x-auto shadow rounded-lg">
+    <table class="table w-full">
+      <thead class="bg-base-200 text-base font-semibold">
+        <tr>
+          <th>Nombre</th>
+          <th>Cédula</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+          <th>Cargo</th>
+          <th>Estado</th>
+          <th class="text-right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loading -->
+        <tr *ngIf="loading">
+          <td colspan="7" class="text-center py-4 text-gray-500">
+            Cargando administrativos...
+          </td>
+        </tr>
+
+        <!-- Lista de administrativos -->
+        <tr *ngFor="let admin of administrativos">
+          <td>{{ admin.nombre }}</td>
+          <td>{{ admin.cedula }}</td>
+          <td>{{ admin.correo }}</td>
+          <td>{{ admin.telefono || "No registra" }}</td>
+          <td>{{ admin.cargo || "No asignado" }}</td>
+          <td>
+            <span
+              class="badge"
+              [ngClass]="admin.estado ? 'badge-success' : 'badge-error'"
+            >
+              {{ admin.estado ? "Activo" : "Inactivo" }}
+            </span>
+          </td>
+          <td class="text-right space-x-2">
+            <button
+              class="btn btn-sm btn-outline"
+              (click)="abrirModalEditar(admin)"
+            >
+              Editar
+            </button>
+            <button
+              class="btn btn-sm"
+              [ngClass]="admin.estado ? 'btn-warning' : 'btn-success'"
+              (click)="toggleEstado(admin)"
+            >
+              {{ admin.estado ? "Desactivar" : "Activar" }}
+            </button>
+          </td>
+        </tr>
+
+        <!-- Si no hay resultados -->
+        <tr *ngIf="!loading && administrativos.length === 0">
+          <td colspan="7" class="text-center py-4 text-gray-500">
+            No hay administrativos registrados.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="modal modal-open" *ngIf="adminModalOpen">
+  <div class="modal-box w-full max-w-2xl">
+    <app-admin-form
+      [adminToEdit]="adminEditando"
+      (onSave)="guardarAdministrativo($event)"
+      (onCancel)="cerrarModal()"
+    ></app-admin-form>
+  </div>
+</div>

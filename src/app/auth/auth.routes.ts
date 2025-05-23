@@ -3,7 +3,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 
 export const AuthRoutes: Routes = [
-  {
+{
     path: 'login',
     component: LoginComponent,
   },
@@ -11,7 +11,6 @@ export const AuthRoutes: Routes = [
     path: 'registro',
     component: RegistroComponent,
   },
-
   {
     path: '**',
     redirectTo: 'login',

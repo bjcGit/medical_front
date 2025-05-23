@@ -1,22 +1,58 @@
+<!-- src/app/auth/pages/login/login.component.html -->
 <div class="hero bg-base-200 min-h-screen">
-  <div class="hero-content flex-col lg:flex-row-reverse">
+  <div class="hero-content flex-col lg:flex-row-reverse w-full max-w-6xl">
+    <!-- Texto lateral -->
     <div class="text-center lg:text-left">
-      <h1 class="text-5xl font-bold">Login now!</h1>
+      <h1 class="text-5xl font-bold">Iniciar Sesión</h1>
       <p class="py-6">
-        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-        quasi. In deleniti eaque aut repudiandae et a id nisi.
+        Accede al sistema de gestión médica con tu cuenta asignada. Si tienes problemas para iniciar sesión, contacta al administrador del sistema.
       </p>
     </div>
+
+    <!-- Formulario -->
     <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
       <div class="card-body">
-        <fieldset class="fieldset">
-          <label class="label">Email</label>
-          <input type="email" class="input" placeholder="Email" />
-          <label class="label">Password</label>
-          <input type="password" class="input" placeholder="Password" />
-          <div><a class="link link-hover">Forgot password?</a></div>
-          <button class="btn btn-neutral mt-4">Login</button>
-        </fieldset>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <fieldset class="fieldset space-y-2">
+            <label class="label" for="correo">Email</label>
+            <input
+              type="email"
+              id="correo"
+              formControlName="correo"
+              class="input input-bordered w-full"
+              placeholder="Email"
+            />
+            <div *ngIf="form.get('correo')?.invalid && form.get('correo')?.touched" class="text-red-500 text-sm">
+              Ingresa un correo válido.
+            </div>
+
+            <label class="label" for="password">Contraseña</label>
+            <input
+              type="password"
+              id="password"
+              formControlName="password"
+              class="input input-bordered w-full"
+              placeholder="Password"
+            />
+            <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="text-red-500 text-sm">
+              La contraseña debe tener al menos 6 caracteres.
+            </div>
+
+            <div><a class="link link-hover text-sm">¿Olvidaste tu contraseña?</a></div>
+
+            <div *ngIf="error" class="text-red-600 text-sm mt-2">
+              {{ error }}
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-neutral mt-4 w-full"
+              [disabled]="loading || form.invalid"
+            >
+              {{ loading ? 'Ingresando...' : 'Login' }}
+            </button>
+          </fieldset>
+        </form>
       </div>
     </div>
   </div>

@@ -1,0 +1,55 @@
+<form (ngSubmit)="submitForm()" [formGroup]="form" class="space-y-3">
+  <h3 class="font-bold text-lg mb-4">
+    {{ adminToEdit ? "Editar Administrativo" : "Nuevo Administrativo" }}
+  </h3>
+  <input
+    class="input input-bordered w-full"
+    placeholder="Nombre"
+    formControlName="nombre"
+  />
+  <input
+    class="input input-bordered w-full"
+    placeholder="Cédula"
+    formControlName="cedula"
+  />
+  <input
+    class="input input-bordered w-full"
+    placeholder="Correo"
+    formControlName="correo"
+  />
+  <input
+    class="input input-bordered w-full"
+    placeholder="Password"
+    formControlName="password"
+  />
+  <div
+    *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+    class="text-error text-sm"
+  >
+    La contraseña debe tener al menos 6 caracteres.
+  </div>
+  <input
+    class="input input-bordered w-full"
+    placeholder="Teléfono"
+    formControlName="telefono"
+  />
+  <input
+    class="input input-bordered w-full"
+    placeholder="Dirección"
+    formControlName="direccion"
+  />
+  <input
+    class="input input-bordered w-full"
+    placeholder="Cargo"
+    formControlName="cargo"
+  />
+
+  <div class="modal-action">
+    <button type="submit" class="btn btn-primary">
+      {{ adminToEdit ? "Actualizar" : "Crear" }}
+    </button>
+    <label for="admin-modal" class="btn" (click)="onCancel.emit()"
+      >Cancelar</label
+    >
+  </div>
+</form>

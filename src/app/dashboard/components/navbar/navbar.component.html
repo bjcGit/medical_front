@@ -22,40 +22,65 @@
         class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-64 p-2 shadow"
       >
         <li>
-          <a routerLink="/cita/activas" routerLinkActive="text-secondary">
-            Citas
+          <a routerLink="/cita" routerLinkActive="text-secondary"> Citas </a>
+        </li>
+        <li>
+          <a routerLink="/sedes" routerLinkActive="text-secondary">Sedes</a>
+        </li>
+        <li>
+          <a routerLink="/profesionales" routerLinkActive="text-secondary"
+            >Profesionales
           </a>
         </li>
         <li>
-          <a routerLink="/seded" routerLinkActive="text-secondary">Sedes</a>
+          <a routerLink="/pacientes" routerLinkActive="text-secondary"
+            >Pacientes
+          </a>
         </li>
         <li>
-          <a routerLink="/profesionales" routerLinkActive="text-secondary">Profesionales</a>
+          <a routerLink="/administrativos" routerLinkActive="text-secondary"
+            >Administrativo
+          </a>
+        </li>
+        <li>
+          <a routerLink="/historias" routerLinkActive="text-secondary"
+            >Historia clinica
+          </a>
         </li>
       </ul>
     </div>
     <a class="btn btn-ghost text-xl" routerLink="/">Medical</a>
   </div>
 
-
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
       <li>
-        <a routerLink="/cita/activas" routerLinkActive="text-secondary">
-          Citas
+        <a routerLink="/sedes" routerLinkActive="text-secondary">Sedes</a>
+      </li>
+      <li>
+        <a routerLink="/profesionales" routerLinkActive="text-secondary"
+          >Profesionales
         </a>
       </li>
-     <li>
-      <a routerLink="/sedes" routerLinkActive="text-secondary">Sedes</a>
-    </li>
       <li>
-        <a routerLink="/profesionales" routerLinkActive="text-secondary">Profesionales</a>
+        <a routerLink="/pacientes" routerLinkActive="text-secondary"
+          >Pacientes
+        </a>
+      </li>
+      <li>
+        <a routerLink="/administrativos" routerLinkActive="text-secondary"
+          >Administrativos
+        </a>
+      </li>
+      <li>
+        <a routerLink="/historias" routerLinkActive="text-secondary"
+          >Historia clinica
+        </a>
       </li>
     </ul>
   </div>
 
-  <div class="navbar-end">
-    <a class="btn">Salir</a>
+ <div class="navbar-end">
+    <a class="btn" (click)="logout()">Salir</a>
   </div>
-
 </div>
